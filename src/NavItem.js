@@ -27,15 +27,16 @@ class NavItem extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(e) {
-    if (this.props.onSelect) {
-      e.preventDefault();
+    handleClick(e) {
+        if (this.props.disabled) {
+            e.preventDefault();
+            return;
+        }
 
-      if (!this.props.disabled) {
-        this.props.onSelect(this.props.eventKey, e);
-      }
+        if (this.props.onSelect) {
+            this.props.onSelect(this.props.eventKey, e);
+        }
     }
-  }
 
   render() {
     const { active, disabled, onClick, className, style, ...props } =
